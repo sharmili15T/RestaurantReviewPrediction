@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Restaurant Review Prediction</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .btn-primary {
+            width: 100%;
+        }
+
+        .result {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .positive {
+            color: green;
+        }
+
+        .negative {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="heading">
+            <h1>Restaurant Review Prediction</h1>
+        </div>
+        <form action="/predict" method="post">
+            <div class="form-group">
+                <label for="review">Enter a restaurant review:</label>
+                <textarea class="form-control" id="review" name="review" rows="4" cols="50" required></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Predict Sentiment</button>
+        </form>
+        {% if review %}
+            <div class="result">
+                <h4>Your review:</h4>
+                <p>{{ review }}</p>
+                {% if sentiment == 'positive' %}
+                    <h4 class="positive">Predicted sentiment: Positive</h4>
+                {% else %}
+                    <h4 class="negative">Predicted sentiment: Negative</h4>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
